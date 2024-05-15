@@ -78,6 +78,16 @@ flutter:
     - family: AppIcons
       fonts:
         - asset: assets/fonts/AppIcons.ttf
+    - family: SFPro
+      fonts:
+        - asset: assets/fonts/SFPro-Regular.otf
+          weight: 400
+        - asset: assets/fonts/SFPro-Medium.otf
+          weight: 500
+        - asset: assets/fonts/SFPro-Semibold.otf
+          weight: 600
+        - asset: assets/fonts/SFPro-Bold.otf
+          weight: 700
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
