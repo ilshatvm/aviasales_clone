@@ -1,3 +1,4 @@
+import 'package:aviasales_clone/common/app_icons.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -50,35 +51,35 @@ class _AppState extends State<App> {
             BottomNavigationBarItem(
               icon: Padding(
                 padding: EdgeInsets.symmetric(vertical: 6.0),
-                child: Icon(Icons.abc),
+                child: Icon(AppIcons.air_ticket),
               ),
               label: "Авиабилеты",
             ),
             BottomNavigationBarItem(
               icon: Padding(
                 padding: EdgeInsets.symmetric(vertical: 6.0),
-                child: Icon(Icons.abc),
+                child: Icon(AppIcons.hotel),
               ),
               label: "Отели",
             ),
             BottomNavigationBarItem(
               icon: Padding(
                 padding: EdgeInsets.symmetric(vertical: 6.0),
-                child: Icon(Icons.abc),
+                child: Icon(AppIcons.location),
               ),
               label: "Короче",
             ),
             BottomNavigationBarItem(
               icon: Padding(
                 padding: EdgeInsets.symmetric(vertical: 6.0),
-                child: Icon(Icons.abc),
+                child: Icon(AppIcons.subscriptions),
               ),
               label: "Подписки",
             ),
             BottomNavigationBarItem(
               icon: Padding(
                 padding: EdgeInsets.symmetric(vertical: 6.0),
-                child: Icon(Icons.abc),
+                child: Icon(AppIcons.profile),
               ),
               label: "Профиль",
             ),
