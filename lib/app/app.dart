@@ -1,14 +1,25 @@
+import 'package:air_tickets_repository/air_tickets_repository.dart';
 import 'package:aviasales_clone/app/app_navbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class App extends StatefulWidget {
-  const App({super.key});
+class App extends StatelessWidget {
+  const App({super.key, required this.airTicketsRepository});
+
+  final AirTicketsRepository airTicketsRepository;
 
   @override
-  State<App> createState() => _AppState();
+  Widget build(BuildContext context) {
+    return RepositoryProvider.value(
+      value: airTicketsRepository,
+      child: const AppView(),
+    );
+  }
 }
 
-class _AppState extends State<App> {
+class AppView extends StatelessWidget {
+  const AppView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
