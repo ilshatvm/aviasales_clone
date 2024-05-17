@@ -1,5 +1,5 @@
 import 'package:air_tickets_repository/air_tickets_repository.dart';
-import 'package:aviasales_clone/air_tickets/bloc/air_tickets_bloc.dart';
+import 'package:aviasales_clone/air_tickets/air_tickets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,16 +22,12 @@ class AirTicketsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocBuilder<AirTicketsBloc, AirTicketsState>(
-        builder: (context, state) => switch (state) {
-          AirTicketsInitial() => const Center(child: Text("Пока пусто")),
-          AirTicketsLoading() => Center(child: CircularProgressIndicator()),
-          AirTicketsLoaded() => Center(
-              child: Text(state.offers.offers[0].title.toString()),
-            ),
-          AirTicketsError() => const Center(child: Text("Ошибка")),
-        },
+    return const Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          AirTicketsTitle(),
+          AirTicketsOffers(),
+        ],
       ),
     );
   }
