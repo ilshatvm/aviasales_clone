@@ -14,9 +14,8 @@ class _AppState extends State<App> {
     return MaterialApp(
       title: 'Aviasales Clone',
       theme: ThemeData(
-        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        // ignore: prefer_const_constructors
-        colorScheme: ColorScheme.dark(
+        brightness: Brightness.dark,
+        colorScheme: const ColorScheme.dark(
           primary: Colors.blue,
           secondary: Colors.blue,
         ),

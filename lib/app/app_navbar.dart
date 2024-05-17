@@ -1,3 +1,4 @@
+import 'package:aviasales_clone/air_tickets/air_tickets.dart';
 import 'package:aviasales_clone/common/app_icons.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class _AppNavBarState extends State<AppNavBar> {
   int _selectedIndex = 0;
 
   static const List<Widget> _widgetOptions = <Widget>[
-    Center(child: Text("Авиабилеты")),
+    AirTicketsPage(),
     Center(child: Text("Отели")),
     Center(child: Text("Короче")),
     Center(child: Text("Подписки")),

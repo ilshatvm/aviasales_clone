@@ -1,0 +1,10 @@
+export 'arrival.dart';
+export 'hand_luggage.dart';
+export 'luggage.dart';
+export 'offer.dart';
+export 'offers.dart';
+export 'price.dart';
+export 'ticket.dart';
+export 'tickets.dart';
+export 'tickets_offer.dart';
+export 'tickets_offers.dart';

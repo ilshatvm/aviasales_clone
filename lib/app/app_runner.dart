@@ -7,7 +7,10 @@ import 'package:flutter/material.dart';
 class AppRunner {
   Future<void> run() async {
     runZonedGuarded(
-      () async => runApp(const App()),
+      () async {
+        WidgetsFlutterBinding.ensureInitialized();
+        runApp(const App());
+      },
       (error, st) async => log(
         error.toString(),
         stackTrace: st,
