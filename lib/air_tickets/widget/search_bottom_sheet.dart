@@ -3,35 +3,21 @@ import 'package:aviasales_clone/air_tickets/widget/popular_direction.dart';
 import 'package:aviasales_clone/common/common.dart';
 import 'package:flutter/material.dart';
 
-class SearchBottomSheet extends StatefulWidget {
-  const SearchBottomSheet({super.key, required this.controller});
+class SearchBottomSheet extends StatelessWidget {
+  const SearchBottomSheet({
+    super.key,
+    required this.controllerFrom,
+    required this.controllerTo,
+  });
 
-  final TextEditingController controller;
+  final TextEditingController controllerFrom;
+  final TextEditingController controllerTo;
 
-  @override
-  State<SearchBottomSheet> createState() => _SearchBottomSheetState();
-}
-
-class _SearchBottomSheetState extends State<SearchBottomSheet> {
   static const popularDirection = [
     PopularDirection(name: 'Стамбул', imagePath: 'assets/images/stambul.png'),
     PopularDirection(name: 'Сочи', imagePath: 'assets/images/sochi.png'),
     PopularDirection(name: 'Пхукет', imagePath: 'assets/images/phuket.png'),
   ];
-
-  late TextEditingController _controllerTo;
-
-  @override
-  void initState() {
-    _controllerTo = TextEditingController();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _controllerTo.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +46,7 @@ class _SearchBottomSheetState extends State<SearchBottomSheet> {
                     Expanded(
                       child: TextFormField(
                         keyboardType: TextInputType.text,
-                        controller: widget.controller,
+                        controller: controllerFrom,
                         decoration: const InputDecoration(
                           hintText: "Откуда - Москва",
                           border: InputBorder.none,
@@ -86,10 +72,10 @@ class _SearchBottomSheetState extends State<SearchBottomSheet> {
                     ),
                     Expanded(
                       child: TextFormField(
-                        controller: _controllerTo,
+                        controller: controllerTo,
                         decoration: InputDecoration(
                           suffixIcon: InkWell(
-                            onTap: () => _controllerTo.clear(),
+                            onTap: () => controllerTo.clear(),
                             child: const Icon(AppIcons.close),
                           ),
                           hintText: "Куда - Турция",
@@ -117,7 +103,7 @@ class _SearchBottomSheetState extends State<SearchBottomSheet> {
                   ),
                 ),
                 InkWell(
-                  onTap: () => _controllerTo.text = 'Куда угодно',
+                  onTap: () => controllerTo.text = 'Куда угодно',
                   child: const DirectionWidget(
                     color: AppColors.blue,
                     icon: AppIcons.globe,
@@ -155,7 +141,7 @@ class _SearchBottomSheetState extends State<SearchBottomSheet> {
                   .map(
                     (e) => InkWell(
                       onTap: () {
-                        _controllerTo.text = e.name;
+                        controllerTo.text = e.name;
                       },
                       child: PopularDirection(
                         name: e.name,

@@ -31,7 +31,7 @@ class AirTicketsBloc extends HydratedBloc<AirTicketsEvent, AirTicketsState> {
     Emitter<AirTicketsState> emit,
   ) async {
     try {
-      emit(state.copyWith(offers: state.offers, from: event.from));
+      emit(state.copyWith(from: event.from));
     } catch (e) {
       emit(state.copyWith(status: AirTicketsStatus.failure));
     }

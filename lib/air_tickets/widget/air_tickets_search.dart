@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AirTicketsSearch extends StatefulWidget {
-  const AirTicketsSearch({
-    super.key,
-  });
+  const AirTicketsSearch({super.key});
 
   @override
   State<AirTicketsSearch> createState() => _AirTicketsSearchState();
@@ -16,36 +14,46 @@ class _AirTicketsSearchState extends State<AirTicketsSearch> {
   final _focusNode = FocusNode();
 
   late TextEditingController _controllerFrom;
+  late TextEditingController _controllerTo;
 
   @override
   void initState() {
     super.initState();
     _controllerFrom = TextEditingController();
+    _controllerTo = TextEditingController();
     _controllerFrom.text = context.read<AirTicketsBloc>().state.from ?? '';
+    _controllerTo.text = context.read<AirTicketsBloc>().state.to ?? '';
     _focusNode.addListener(
       () {
         if (_focusNode.hasFocus) {
           _focusNode.unfocus();
-          showModalBottomSheet<void>(
-            useRootNavigator: true,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(16.0)),
-            ),
-            context: context,
-            isScrollControlled: true,
-            useSafeArea: true,
-            enableDrag: true,
-            elevation: 0,
-            constraints: BoxConstraints(
-              maxHeight: MediaQuery.of(context).size.height * .95,
-            ),
-            backgroundColor: AppColors.grey2,
-            showDragHandle: true,
-            builder: (BuildContext context) {
-              return SearchBottomSheet(controller: _controllerFrom);
-            },
-          );
+          _showSearchBottomSheet();
         }
+      },
+    );
+  }
+
+  Future<void> _showSearchBottomSheet() async {
+    return showModalBottomSheet<void>(
+      useRootNavigator: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16.0)),
+      ),
+      context: context,
+      isScrollControlled: true,
+      useSafeArea: true,
+      enableDrag: true,
+      elevation: 0,
+      constraints: BoxConstraints(
+        maxHeight: MediaQuery.of(context).size.height * .95,
+      ),
+      backgroundColor: AppColors.grey2,
+      showDragHandle: true,
+      builder: (BuildContext context) {
+        return SearchBottomSheet(
+          controllerFrom: _controllerFrom,
+          controllerTo: _controllerTo,
+        );
       },
     );
   }
@@ -54,6 +62,7 @@ class _AirTicketsSearchState extends State<AirTicketsSearch> {
   void dispose() {
     _focusNode.dispose();
     _controllerFrom.dispose();
+    _controllerTo.dispose();
     super.dispose();
   }
 
@@ -102,6 +111,7 @@ class _AirTicketsSearchState extends State<AirTicketsSearch> {
                       TextFormField(
                         focusNode: _focusNode,
                         keyboardType: TextInputType.none,
+                        controller: _controllerTo,
                         decoration: const InputDecoration(
                           hintText: "Куда - Турция",
                           contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
