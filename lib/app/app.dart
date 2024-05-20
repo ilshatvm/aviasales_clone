@@ -1,5 +1,6 @@
 import 'package:air_tickets_repository/air_tickets_repository.dart';
-import 'package:aviasales_clone/app/app_navbar.dart';
+import 'package:aviasales_clone/app/app_router.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,7 +23,7 @@ class AppView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Aviasales Clone',
       theme: ThemeData(
         brightness: Brightness.dark,
@@ -33,7 +34,7 @@ class AppView extends StatelessWidget {
         fontFamily: "SFPro",
         useMaterial3: true,
       ),
-      home: const AppNavBar(),
+      routerConfig: router,
     );
   }
 }

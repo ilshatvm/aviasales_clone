@@ -1,83 +1,81 @@
-import 'package:aviasales_clone/air_tickets/air_tickets.dart';
-import 'package:aviasales_clone/common/app_icons.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:aviasales_clone/common/common.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-class AppNavBar extends StatefulWidget {
-  const AppNavBar({super.key});
+class AppNavBar extends StatelessWidget {
+  const AppNavBar({Key? key, required this.navigationShell})
+      : super(key: key ?? const ValueKey<String>('AppNavBar'));
 
-  @override
-  State<AppNavBar> createState() => _AppNavBarState();
-}
-
-class _AppNavBarState extends State<AppNavBar> {
-  int _selectedIndex = 0;
-
-  static const List<Widget> _widgetOptions = <Widget>[
-    AirTicketsPage(),
-    Center(child: Text("Отели")),
-    Center(child: Text("Короче")),
-    Center(child: Text("Подписки")),
-    Center(child: Text("Профиль")),
-  ];
-
-  void _onTap(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+  final StatefulNavigationShell navigationShell;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _widgetOptions[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        elevation: 0.0,
-        selectedFontSize: 10.0,
-        unselectedFontSize: 10.0,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        unselectedItemColor: Colors.grey,
-        type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Padding(
-              padding: EdgeInsets.symmetric(vertical: 4.0),
-              child: Icon(AppIcons.air_ticket),
+      body: navigationShell,
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(
+          border: Border(
+            top: BorderSide(
+              color: AppColors.grey1,
+              width: 1.0,
             ),
-            label: "Авиабилеты",
           ),
-          BottomNavigationBarItem(
-            icon: Padding(
-              padding: EdgeInsets.symmetric(vertical: 4.0),
-              child: Icon(AppIcons.hotel),
+        ),
+        child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          selectedFontSize: 10.0,
+          unselectedFontSize: 10.0,
+          selectedItemColor: AppColors.blue,
+          unselectedItemColor: AppColors.grey6,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: EdgeInsets.symmetric(vertical: 4.0),
+                child: Icon(AppIcons.air_ticket),
+              ),
+              label: "Авиабилеты",
             ),
-            label: "Отели",
-          ),
-          BottomNavigationBarItem(
-            icon: Padding(
-              padding: EdgeInsets.symmetric(vertical: 4.0),
-              child: Icon(AppIcons.location),
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: EdgeInsets.symmetric(vertical: 4.0),
+                child: Icon(AppIcons.hotel),
+              ),
+              label: "Отели",
             ),
-            label: "Короче",
-          ),
-          BottomNavigationBarItem(
-            icon: Padding(
-              padding: EdgeInsets.symmetric(vertical: 4.0),
-              child: Icon(AppIcons.subscriptions),
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: EdgeInsets.symmetric(vertical: 4.0),
+                child: Icon(AppIcons.location),
+              ),
+              label: "Короче",
             ),
-            label: "Подписки",
-          ),
-          BottomNavigationBarItem(
-            icon: Padding(
-              padding: EdgeInsets.symmetric(vertical: 4.0),
-              child: Icon(AppIcons.profile),
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: EdgeInsets.symmetric(vertical: 4.0),
+                child: Icon(AppIcons.subscriptions),
+              ),
+              label: "Подписки",
             ),
-            label: "Профиль",
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: (int index) => _onTap(index),
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: EdgeInsets.symmetric(vertical: 4.0),
+                child: Icon(AppIcons.profile),
+              ),
+              label: "Профиль",
+            ),
+          ],
+          currentIndex: navigationShell.currentIndex,
+          onTap: (int index) => _onTap(context, index),
+        ),
       ),
+    );
+  }
+
+  void _onTap(BuildContext context, int index) {
+    navigationShell.goBranch(
+      index,
+      initialLocation: index == navigationShell.currentIndex,
     );
   }
 }
