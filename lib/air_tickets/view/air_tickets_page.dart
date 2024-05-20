@@ -11,7 +11,7 @@ class AirTicketsPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => AirTicketsBloc(
         repository: context.read<AirTicketsRepository>(),
-      )..add(AirTicketsEventLoad()),
+      )..add(AirTicketsEventLoadOffers()),
       child: const AirTicketsView(),
     );
   }

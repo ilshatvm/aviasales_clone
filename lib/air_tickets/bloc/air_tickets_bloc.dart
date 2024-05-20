@@ -9,11 +9,11 @@ class AirTicketsBloc extends Bloc<AirTicketsEvent, AirTicketsState> {
   final AirTicketsRepository repository;
 
   AirTicketsBloc({required this.repository}) : super(AirTicketsInitial()) {
-    on<AirTicketsEventLoad>(_onLoad);
+    on<AirTicketsEventLoadOffers>(_onLoadOffers);
   }
 
-  Future<void> _onLoad(
-    AirTicketsEventLoad event,
+  Future<void> _onLoadOffers(
+    AirTicketsEventLoadOffers event,
     Emitter<AirTicketsState> emit,
   ) async {
     emit(AirTicketsLoading());
