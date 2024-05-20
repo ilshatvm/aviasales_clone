@@ -16,8 +16,7 @@ class OfferCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final formatter = NumberFormat('###,###,###', 'ru_RU');
-    return Container(
-      // color: index.isOdd ? Colors.green : Colors.orange,
+    return SizedBox(
       width: 132.0,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
