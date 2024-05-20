@@ -11,6 +11,9 @@ class AirTicketsBloc extends HydratedBloc<AirTicketsEvent, AirTicketsState> {
   AirTicketsBloc({required this.repository}) : super(AirTicketsState.init()) {
     on<AirTicketsEventLoadOffers>(_onLoadOffers);
     on<AirTicketsEventChangeFromField>(_onChangeFromField);
+    on<AirTicketsEventChangeToField>(_onChangeToField);
+    on<AirTicketsEventLoadTicketsOffers>(_onLoadTicketsOffers);
+    on<AirTicketsEventAddedDeparture>(_onAddedDeparture);
   }
 
   Future<void> _onLoadOffers(
@@ -21,6 +24,22 @@ class AirTicketsBloc extends HydratedBloc<AirTicketsEvent, AirTicketsState> {
     try {
       final offers = await repository.getOffers();
       emit(state.copyWith(offers: offers, status: AirTicketsStatus.success));
+    } catch (e) {
+      emit(state.copyWith(status: AirTicketsStatus.failure));
+    }
+  }
+
+  Future<void> _onLoadTicketsOffers(
+    AirTicketsEventLoadTicketsOffers event,
+    Emitter<AirTicketsState> emit,
+  ) async {
+    emit(state.copyWith(status: AirTicketsStatus.loading));
+    try {
+      final ticketsOffers = await repository.getTicketsOffers();
+      emit(state.copyWith(
+        ticketsOffers: ticketsOffers,
+        status: AirTicketsStatus.success,
+      ));
     } catch (e) {
       emit(state.copyWith(status: AirTicketsStatus.failure));
     }
@@ -37,12 +56,35 @@ class AirTicketsBloc extends HydratedBloc<AirTicketsEvent, AirTicketsState> {
     }
   }
 
+  Future<void> _onChangeToField(
+    AirTicketsEventChangeToField event,
+    Emitter<AirTicketsState> emit,
+  ) async {
+    try {
+      emit(state.copyWith(to: event.to));
+    } catch (e) {
+      emit(state.copyWith(status: AirTicketsStatus.failure));
+    }
+  }
+
+  Future<void> _onAddedDeparture(
+    AirTicketsEventAddedDeparture event,
+    Emitter<AirTicketsState> emit,
+  ) async {
+    try {
+      emit(state.copyWith(departureDate: event.date));
+    } catch (e) {
+      emit(state.copyWith(status: AirTicketsStatus.failure));
+    }
+  }
+
   @override
   AirTicketsState? fromJson(Map<String, dynamic> json) {
     return AirTicketsState(
       status: AirTicketsStatus.success,
       offers: Offers.fromJson(json['offers']),
       from: json['from'],
+      ticketsOffers: TicketsOffers.fromJson(json['ticketsOffers']),
     );
   }
 
@@ -52,6 +94,7 @@ class AirTicketsBloc extends HydratedBloc<AirTicketsEvent, AirTicketsState> {
       return {
         'offers': state.offers.toJson(),
         'from': state.from,
+        'ticketsOffers': state.ticketsOffers.toJson(),
       };
     }
     return null;

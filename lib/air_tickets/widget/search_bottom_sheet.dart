@@ -1,7 +1,8 @@
-import 'package:aviasales_clone/air_tickets/widget/direction_widget.dart';
-import 'package:aviasales_clone/air_tickets/widget/popular_direction.dart';
+import 'package:aviasales_clone/air_tickets/air_tickets.dart';
 import 'package:aviasales_clone/common/common.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class SearchBottomSheet extends StatelessWidget {
   const SearchBottomSheet({
@@ -95,7 +96,10 @@ class SearchBottomSheet extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    GoRouter.of(context).pop();
+                    GoRouter.of(context).go('/tickets/stub');
+                  },
                   child: const DirectionWidget(
                     color: AppColors.green,
                     icon: AppIcons.route,
@@ -111,7 +115,10 @@ class SearchBottomSheet extends StatelessWidget {
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    GoRouter.of(context).pop();
+                    GoRouter.of(context).go('/tickets/stub');
+                  },
                   child: const DirectionWidget(
                     color: AppColors.blueDark,
                     icon: AppIcons.calendar,
@@ -119,7 +126,10 @@ class SearchBottomSheet extends StatelessWidget {
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    GoRouter.of(context).pop();
+                    GoRouter.of(context).go('/tickets/stub');
+                  },
                   child: const DirectionWidget(
                     color: AppColors.red,
                     icon: AppIcons.fire,
@@ -141,7 +151,14 @@ class SearchBottomSheet extends StatelessWidget {
                   .map(
                     (e) => InkWell(
                       onTap: () {
-                        controllerTo.text = e.name;
+                        context
+                            .read<AirTicketsBloc>()
+                            .add(AirTicketsEventChangeToField(to: e.name));
+                        context
+                            .read<AirTicketsBloc>()
+                            .add(AirTicketsEventLoadTicketsOffers());
+                        GoRouter.of(context).pop();
+                        GoRouter.of(context).go('/tickets/selected');
                       },
                       child: PopularDirection(
                         name: e.name,

@@ -23,7 +23,7 @@ final GoRouter router = GoRouter(
       ) {
         return AppNavBar(
           navigationShell: navigationShell,
-          key: GlobalKey(debugLabel: "RootScreen"),
+          key: GlobalKey(debugLabel: "HomeScreen"),
         );
       },
       branches: <StatefulShellBranch>[
@@ -37,6 +37,10 @@ final GoRouter router = GoRouter(
                 GoRoute(
                   path: 'stub',
                   builder: (context, state) => const AppStubPage('Заглушка'),
+                ),
+                GoRoute(
+                  path: 'selected',
+                  builder: (context, state) => const AirTicketsSelectedPage(),
                 ),
               ],
             ),

@@ -1,4 +1,5 @@
 import 'package:air_tickets_repository/air_tickets_repository.dart';
+import 'package:aviasales_clone/air_tickets/air_tickets.dart';
 import 'package:aviasales_clone/app/app_router.dart';
 
 import 'package:flutter/material.dart';
@@ -13,7 +14,11 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return RepositoryProvider.value(
       value: airTicketsRepository,
-      child: const AppView(),
+      child: BlocProvider(
+        create: (context) => AirTicketsBloc(repository: airTicketsRepository)
+          ..add(AirTicketsEventLoadOffers()),
+        child: const AppView(),
+      ),
     );
   }
 }
