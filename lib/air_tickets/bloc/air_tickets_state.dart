@@ -1,29 +1,41 @@
 part of 'air_tickets_bloc.dart';
 
-sealed class AirTicketsState extends Equatable {}
-
-final class AirTicketsInitial extends AirTicketsState {
-  @override
-  List<Object?> get props => [];
+enum AirTicketsStatus {
+  initial,
+  loading,
+  success,
+  failure;
 }
 
-final class AirTicketsLoading extends AirTicketsState {
-  @override
-  List<Object?> get props => [];
-}
+final class AirTicketsState extends Equatable {
+  const AirTicketsState({
+    required this.status,
+    required this.offers,
+    this.from,
+  });
 
-final class AirTicketsLoaded extends AirTicketsState {
+  factory AirTicketsState.init() => AirTicketsState(
+        status: AirTicketsStatus.initial,
+        offers: Offers(offers: []),
+        from: '',
+      );
+
+  final AirTicketsStatus status;
   final Offers offers;
-  AirTicketsLoaded({required this.offers});
+  final String? from;
+
+  AirTicketsState copyWith({
+    AirTicketsStatus? status,
+    Offers? offers,
+    String? from,
+  }) {
+    return AirTicketsState(
+      status: status ?? this.status,
+      offers: offers ?? this.offers,
+      from: from ?? this.from,
+    );
+  }
 
   @override
-  List<Object?> get props => [offers];
-}
-
-final class AirTicketsError extends AirTicketsState {
-  final String message;
-  AirTicketsError({required this.message});
-
-  @override
-  List<Object?> get props => [message];
+  List<Object?> get props => [status, offers, from];
 }

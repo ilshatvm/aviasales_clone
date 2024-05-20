@@ -31,12 +31,13 @@ class AirTicketsOffers extends StatelessWidget {
           SizedBox(
             height: 220.0,
             child: BlocBuilder<AirTicketsBloc, AirTicketsState>(
-              builder: (context, state) => switch (state) {
-                AirTicketsLoaded() =>
+              builder: (context, state) => switch (state.status) {
+                AirTicketsStatus.success =>
                   OffersBuilder(images: images, offers: state.offers),
-                AirTicketsInitial() => const Center(child: Text("Пока пусто")),
-                AirTicketsLoading() => const AppProgress(),
-                AirTicketsError() => const Center(child: Text("Ошибка")),
+                AirTicketsStatus.initial =>
+                  const Center(child: Text("Пока пусто")),
+                AirTicketsStatus.loading => const AppProgress(),
+                AirTicketsStatus.failure => const Center(child: Text("Ошибка")),
               },
             ),
           ),

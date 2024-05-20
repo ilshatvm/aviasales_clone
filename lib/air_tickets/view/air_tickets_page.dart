@@ -26,6 +26,7 @@ class AirTicketsView extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           AirTicketsTitle(),
+          AirTicketsSearch(),
           AirTicketsOffers(),
         ],
       ),
