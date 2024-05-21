@@ -15,9 +15,10 @@ class SearchBottomSheet extends StatelessWidget {
   final TextEditingController controllerTo;
 
   static const popularDirection = [
-    PopularDirection(name: 'Стамбул', imagePath: 'assets/images/stambul.png'),
-    PopularDirection(name: 'Сочи', imagePath: 'assets/images/sochi.png'),
-    PopularDirection(name: 'Пхукет', imagePath: 'assets/images/phuket.png'),
+    PopularDirectionItem(
+        name: 'Стамбул', imagePath: 'assets/images/stambul.png'),
+    PopularDirectionItem(name: 'Сочи', imagePath: 'assets/images/sochi.png'),
+    PopularDirectionItem(name: 'Пхукет', imagePath: 'assets/images/phuket.png'),
   ];
 
   @override
@@ -160,7 +161,7 @@ class SearchBottomSheet extends StatelessWidget {
                         GoRouter.of(context).pop();
                         GoRouter.of(context).go('/tickets/selected');
                       },
-                      child: PopularDirection(
+                      child: PopularDirectionItem(
                         name: e.name,
                         imagePath: e.imagePath,
                       ),

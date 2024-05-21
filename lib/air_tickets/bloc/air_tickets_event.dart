@@ -12,6 +12,11 @@ final class AirTicketsEventLoadTicketsOffers extends AirTicketsEvent {
   List<Object?> get props => [];
 }
 
+final class AirTicketsEventLoadTickets extends AirTicketsEvent {
+  @override
+  List<Object?> get props => [];
+}
+
 final class AirTicketsEventChangeFromField extends AirTicketsEvent {
   final String from;
 

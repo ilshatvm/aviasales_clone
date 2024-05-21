@@ -9,6 +9,7 @@ enum AirTicketsStatus {
 
 final class AirTicketsState extends Equatable {
   const AirTicketsState({
+    required this.tickets,
     required this.status,
     required this.offers,
     this.from,
@@ -24,6 +25,7 @@ final class AirTicketsState extends Equatable {
         to: '',
         ticketsOffers: TicketsOffers(ticketsOffers: []),
         departureDate: DateTime.now(),
+        tickets: Tickets(tickets: []),
       );
 
   final AirTicketsStatus status;
@@ -32,6 +34,7 @@ final class AirTicketsState extends Equatable {
   final String? to;
   final TicketsOffers ticketsOffers;
   final DateTime? departureDate;
+  final Tickets tickets;
 
   AirTicketsState copyWith({
     AirTicketsStatus? status,
@@ -40,6 +43,7 @@ final class AirTicketsState extends Equatable {
     String? to,
     TicketsOffers? ticketsOffers,
     DateTime? departureDate,
+    Tickets? tickets,
   }) {
     return AirTicketsState(
       status: status ?? this.status,
@@ -48,6 +52,7 @@ final class AirTicketsState extends Equatable {
       to: to ?? this.to,
       ticketsOffers: ticketsOffers ?? this.ticketsOffers,
       departureDate: departureDate ?? this.departureDate,
+      tickets: tickets ?? this.tickets,
     );
   }
 
@@ -59,5 +64,6 @@ final class AirTicketsState extends Equatable {
         to,
         ticketsOffers,
         departureDate,
+        tickets,
       ];
 }

@@ -41,6 +41,12 @@ final GoRouter router = GoRouter(
                 GoRoute(
                   path: 'selected',
                   builder: (context, state) => const AirTicketsSelectedPage(),
+                  routes: [
+                    GoRoute(
+                      path: 'all',
+                      builder: (context, state) => const AllAirTicketsPage(),
+                    ),
+                  ],
                 ),
               ],
             ),

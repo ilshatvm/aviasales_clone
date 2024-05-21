@@ -6,15 +6,6 @@ class AirTicketsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AirTicketsView();
-  }
-}
-
-class AirTicketsView extends StatelessWidget {
-  const AirTicketsView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
     return const Scaffold(
       body: CustomScrollView(
         slivers: [

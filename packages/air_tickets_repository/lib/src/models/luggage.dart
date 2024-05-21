@@ -9,7 +9,7 @@ class Luggage {
   @JsonKey(name: "has_luggage")
   bool hasLuggage;
   @JsonKey(name: "price")
-  Price price;
+  Price? price;
 
   Luggage({
     required this.hasLuggage,

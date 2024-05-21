@@ -7,8 +7,8 @@ part of 'tickets.dart';
 // **************************************************************************
 
 Tickets _$TicketsFromJson(Map<String, dynamic> json) => Tickets(
-      tickets: (json['tickets'] as List<dynamic>)
-          .map((e) => Ticket.fromJson(e as Map<String, dynamic>))
+      tickets: (json['tickets'] as List<dynamic>?)
+          ?.map((e) => Ticket.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

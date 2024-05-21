@@ -14,6 +14,7 @@ class AirTicketsBloc extends HydratedBloc<AirTicketsEvent, AirTicketsState> {
     on<AirTicketsEventChangeToField>(_onChangeToField);
     on<AirTicketsEventLoadTicketsOffers>(_onLoadTicketsOffers);
     on<AirTicketsEventAddedDeparture>(_onAddedDeparture);
+    on<AirTicketsEventLoadTickets>(_onLoadTickets);
   }
 
   Future<void> _onLoadOffers(
@@ -38,6 +39,23 @@ class AirTicketsBloc extends HydratedBloc<AirTicketsEvent, AirTicketsState> {
       final ticketsOffers = await repository.getTicketsOffers();
       emit(state.copyWith(
         ticketsOffers: ticketsOffers,
+        status: AirTicketsStatus.success,
+      ));
+    } catch (e) {
+      emit(state.copyWith(status: AirTicketsStatus.failure));
+    }
+  }
+
+  Future<void> _onLoadTickets(
+    AirTicketsEventLoadTickets event,
+    Emitter<AirTicketsState> emit,
+  ) async {
+    emit(state.copyWith(status: AirTicketsStatus.loading));
+    try {
+      final tickets = await repository.getTickets();
+
+      emit(state.copyWith(
+        tickets: tickets,
         status: AirTicketsStatus.success,
       ));
     } catch (e) {
@@ -85,6 +103,7 @@ class AirTicketsBloc extends HydratedBloc<AirTicketsEvent, AirTicketsState> {
       offers: Offers.fromJson(json['offers']),
       from: json['from'],
       ticketsOffers: TicketsOffers.fromJson(json['ticketsOffers']),
+      tickets: Tickets.fromJson(json['tickets']),
     );
   }
 
@@ -95,6 +114,7 @@ class AirTicketsBloc extends HydratedBloc<AirTicketsEvent, AirTicketsState> {
         'offers': state.offers.toJson(),
         'from': state.from,
         'ticketsOffers': state.ticketsOffers.toJson(),
+        'tickets': state.tickets.toJson(),
       };
     }
     return null;

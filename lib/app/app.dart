@@ -1,6 +1,8 @@
 import 'package:air_tickets_repository/air_tickets_repository.dart';
 import 'package:aviasales_clone/air_tickets/air_tickets.dart';
 import 'package:aviasales_clone/app/app_router.dart';
+import 'package:aviasales_clone/common/app_colors.dart';
+import 'package:aviasales_clone/common/common.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,6 +40,24 @@ class AppView extends StatelessWidget {
         ),
         fontFamily: "SFPro",
         useMaterial3: true,
+        filledButtonTheme: const FilledButtonThemeData(
+          style: ButtonStyle(
+            foregroundColor: WidgetStatePropertyAll(AppColors.white),
+            backgroundColor: WidgetStatePropertyAll(AppColors.blue),
+            textStyle: WidgetStatePropertyAll(
+              TextStyle(
+                color: AppColors.white,
+                fontSize: 16.0,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
+            shape: WidgetStatePropertyAll(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(8.0)),
+              ),
+            ),
+          ),
+        ),
       ),
       routerConfig: router,
     );

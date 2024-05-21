@@ -1,7 +1,12 @@
+export 'air_ticket_card.dart';
+export 'air_tickets_app_bar.dart';
 export 'air_tickets_offers.dart';
-export 'air_tickets_title.dart';
-export 'offer_card.dart';
 export 'air_tickets_search.dart';
+export 'air_tickets_title.dart';
 export 'direction_widget.dart';
-export 'popular_direction.dart';
+export 'offer_card.dart';
+export 'popular_direction_item.dart';
+export 'recomendation_tickets.dart';
 export 'search_bottom_sheet.dart';
+export 'search_cheaps.dart';
+export 'selected_search_bar.dart';

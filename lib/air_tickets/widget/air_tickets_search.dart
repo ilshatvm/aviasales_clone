@@ -34,19 +34,18 @@ class _AirTicketsSearchState extends State<AirTicketsSearch> {
   }
 
   Future<void> _showSearchBottomSheet() async {
+    final size = MediaQuery.of(context).size;
     return showModalBottomSheet<void>(
-      useRootNavigator: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(16.0)),
       ),
+      useRootNavigator: true,
       context: context,
       isScrollControlled: true,
       useSafeArea: true,
       enableDrag: true,
       elevation: 0,
-      constraints: BoxConstraints(
-        maxHeight: MediaQuery.of(context).size.height * .95,
-      ),
+      constraints: BoxConstraints(maxHeight: size.height * .95),
       backgroundColor: AppColors.grey2,
       showDragHandle: true,
       builder: (BuildContext context) {

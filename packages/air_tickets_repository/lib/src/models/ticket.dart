@@ -12,7 +12,7 @@ class Ticket {
   @JsonKey(name: "id")
   int id;
   @JsonKey(name: "badge")
-  String badge;
+  String? badge;
   @JsonKey(name: "price")
   Price price;
   @JsonKey(name: "provider_name")

@@ -1,7 +1,6 @@
 import 'package:air_tickets_repository/air_tickets_repository.dart';
 import 'package:aviasales_clone/common/common.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class OfferCard extends StatelessWidget {
   const OfferCard({
@@ -15,7 +14,6 @@ class OfferCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final formatter = NumberFormat('###,###,###', 'ru_RU');
     return SizedBox(
       width: 132.0,
       child: Column(
@@ -47,7 +45,7 @@ class OfferCard extends StatelessWidget {
             children: [
               const Icon(AppIcons.air_ticket),
               Text(
-                'от ${formatter.format(offer.price.value)} ₽',
+                'от ${offer.price.value.toPrice()}',
                 style: const TextStyle(
                   fontSize: 14.0,
                   fontWeight: FontWeight.w400,

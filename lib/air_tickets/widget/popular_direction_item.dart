@@ -8,8 +8,8 @@ class PopularDirectionModel {
   PopularDirectionModel({required this.name, required this.imagePath});
 }
 
-class PopularDirection extends StatelessWidget {
-  const PopularDirection({
+class PopularDirectionItem extends StatelessWidget {
+  const PopularDirectionItem({
     super.key,
     required this.name,
     required this.imagePath,

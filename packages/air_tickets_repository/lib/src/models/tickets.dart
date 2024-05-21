@@ -7,10 +7,10 @@ part 'tickets.g.dart';
 @JsonSerializable()
 class Tickets {
   @JsonKey(name: "tickets")
-  List<Ticket> tickets;
+  final List<Ticket>? tickets;
 
   Tickets({
-    required this.tickets,
+    this.tickets,
   });
 
   factory Tickets.fromJson(Map<String, dynamic> json) =>

@@ -8,7 +8,7 @@ part of 'hand_luggage.dart';
 
 HandLuggage _$HandLuggageFromJson(Map<String, dynamic> json) => HandLuggage(
       hasHandLuggage: json['has_hand_luggage'] as bool,
-      size: json['size'] as String,
+      size: json['size'] as String?,
     );
 
 Map<String, dynamic> _$HandLuggageToJson(HandLuggage instance) =>

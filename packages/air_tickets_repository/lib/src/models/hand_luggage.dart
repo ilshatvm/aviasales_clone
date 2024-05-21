@@ -7,7 +7,7 @@ class HandLuggage {
   @JsonKey(name: "has_hand_luggage")
   bool hasHandLuggage;
   @JsonKey(name: "size")
-  String size;
+  String? size;
 
   HandLuggage({
     required this.hasHandLuggage,
