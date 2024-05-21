@@ -158,6 +158,7 @@ class SearchBottomSheet extends StatelessWidget {
                         context
                             .read<AirTicketsBloc>()
                             .add(AirTicketsEventLoadTicketsOffers());
+                        controllerTo.text = e.name;
                         GoRouter.of(context).pop();
                         GoRouter.of(context).go('/tickets/selected');
                       },

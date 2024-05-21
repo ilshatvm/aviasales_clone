@@ -2,6 +2,7 @@ import 'package:aviasales_clone/air_tickets/air_tickets.dart';
 import 'package:aviasales_clone/common/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class AirTicketsSearch extends StatefulWidget {
   const AirTicketsSearch({super.key});
@@ -83,11 +84,19 @@ class _AirTicketsSearchState extends State<AirTicketsSearch> {
             ),
             child: Row(
               children: [
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(12.0, 0.0, 16.0, 0.0),
-                  child: Icon(
-                    AppIcons.search,
-                    color: AppColors.black,
+                InkWell(
+                  onTap: () {
+                    if (_controllerFrom.text.isNotEmpty &&
+                        _controllerTo.text.isNotEmpty) {
+                      GoRouter.of(context).go('/tickets/selected');
+                    }
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.fromLTRB(12.0, 0.0, 16.0, 0.0),
+                    child: Icon(
+                      AppIcons.search,
+                      color: AppColors.black,
+                    ),
                   ),
                 ),
                 Expanded(
